@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book appointment | CareNova</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container navbar">
+        <a href="/" class="brand">
+          <span class="brand-mark">✚</span>
+          <span>CareNova</span>
+        </a>
+        <nav class="nav-links">
+          <a href="/">Home</a>
+          <a href="/doctors">Doctors</a>
+          <a href="/dashboard">Dashboard</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container">
+        <div class="appointment-box">
+          <span class="eyebrow">Schedule appointment</span>
+          <h2 style="margin-top:0.8rem;">Book with <%= doctor.name %></h2>
+          <p>Specialty: <strong><%= doctor.specialty || 'General Care' %></strong> • Fee: <strong>$<%= Number(doctor.fee || 0).toFixed(2) %></strong></p>
+
+          <% if (error) { %>
+            <div class="input-error"><%= error %></div>
+          <% } %>
+
+          <form method="POST" action="/book/<%= doctor.id %>">
+            <div class="form-grid">
+              <label>
+                Appointment date
+                <input type="date" name="appointment_date" required />
+              </label>
+
+              <label>
+                Appointment time
+                <input type="time" name="appointment_time" required />
+              </label>
+            </div>
+
+            <label>
+              Notes for the doctor
+              <textarea name="notes" placeholder="Share your symptoms, goals, or what you would like to discuss."></textarea>
+            </label>
+
+            <button class="btn btn-primary" type="submit">Confirm appointment</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctors | CareNova</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container navbar">
+        <a href="/" class="brand">
+          <span class="brand-mark">✚</span>
+          <span>CareNova</span>
+        </a>
+        <nav class="nav-links">
+          <a href="/">Home</a>
+          <% if (currentUser) { %>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+          <% } else { %>
+            <a href="/login">Login</a>
+            <a href="/signup">Sign up</a>
+          <% } %>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-header">
+      <div class="container">
+        <span class="eyebrow">Medical specialists</span>
+        <h1>Meet our doctors</h1>
+      </div>
+    </main>
+
+    <section class="section">
+      <div class="container list-grid">
+        <% doctors.forEach((doctor) => { %>
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=700&q=80" alt="<%= doctor.name %>" />
+            <div class="meta"><%= doctor.specialty || 'Medical Specialist' %></div>
+            <h3><%= doctor.name %></h3>
+            <p><%= doctor.city || 'Location not specified' %></p>
+            <div class="row">
+              <span class="price-tag">$<%= Number(doctor.fee || 0).toFixed(2) %></span>
+              <a href="/doctors/<%= doctor.id %>" class="btn btn-secondary">Profile</a>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </section>
+  </body>
+</html>

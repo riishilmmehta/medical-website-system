@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= doctor.name %> | CareNova</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container navbar">
+        <a href="/" class="brand">
+          <span class="brand-mark">✚</span>
+          <span>CareNova</span>
+        </a>
+        <nav class="nav-links">
+          <a href="/">Home</a>
+          <a href="/doctors">Doctors</a>
+          <% if (currentUser) { %>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+          <% } else { %>
+            <a href="/login">Login</a>
+            <a href="/signup">Sign up</a>
+          <% } %>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container">
+        <div class="panel">
+          <div class="doctor-profile-header">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=700&q=80" alt="<%= doctor.name %>" />
+            <div>
+              <span class="eyebrow"><%= doctor.specialty || 'Specialist' %></span>
+              <h1 style="margin-top: 0.8rem;"><%= doctor.name %></h1>
+              <p><strong>Location:</strong> <%= doctor.city || 'Not specified' %></p>
+              <p><strong>Experience:</strong> <%= doctor.experience || 0 %> years</p>
+              <p><strong>Consultation fee:</strong> $<%= Number(doctor.fee || 0).toFixed(2) %></p>
+            </div>
+          </div>
+
+          <p><%= doctor.bio || 'This doctor has not provided a bio yet.' %></p>
+
+          <div class="profile-actions">
+            <% if (currentUser && currentUser.role === 'patient') { %>
+              <a class="btn btn-primary" href="/book/<%= doctor.id %>">Book Appointment</a>
+            <% } else if (!currentUser) { %>
+              <a class="btn btn-primary" href="/signup">Create Patient Account</a>
+            <% } %>
+            <a class="btn btn-light" href="/doctors">Back to doctors</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

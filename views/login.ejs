@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | CareNova</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container navbar">
+        <a href="/" class="brand">
+          <span class="brand-mark">✚</span>
+          <span>CareNova</span>
+        </a>
+        <nav class="nav-links">
+          <a href="/">Home</a>
+          <a href="/signup">Create account</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="auth-shell">
+      <div class="auth-box">
+        <span class="eyebrow">Welcome back</span>
+        <h1>Login to your account</h1>
+
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="input-error"><%= error %></div>
+        <% } %>
+
+        <form method="POST" action="/login">
+          <div class="form-grid-2">
+            <label class="full-width">
+              Email
+              <input type="email" name="email" required />
+            </label>
+
+            <label class="full-width">
+              Password
+              <input type="password" name="password" required />
+            </label>
+          </div>
+
+          <div style="margin-top: 1.2rem;">
+            <button class="btn btn-primary" type="submit">Login</button>
+          </div>
+        </form>
+
+        <p style="margin-top: 1rem; color: #53657a;">
+          Need an account? <a href="/signup" style="color:#0f766e; font-weight:700;">Create one</a>
+        </p>
+      </div>
+    </main>
+  </body>
+</html>

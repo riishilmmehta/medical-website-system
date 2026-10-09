@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CareNova Medical</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container navbar">
+        <a href="/" class="brand">
+          <span class="brand-mark">✚</span>
+          <span>CareNova</span>
+        </a>
+
+        <nav class="nav-links">
+          <a href="/">Home</a>
+          <a href="/doctors">Doctors</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <% if (currentUser) { %>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+          <% } else { %>
+            <a href="/login">Login</a>
+            <a href="/signup">Sign Up</a>
+          <% } %>
+        </nav>
+
+        <div class="nav-actions">
+          <% if (currentUser) { %>
+            <a href="/dashboard" class="btn btn-secondary">My Account</a>
+          <% } else { %>
+            <a href="/signup" class="btn btn-primary">Book Visit</a>
+          <% } %>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <span class="eyebrow">Trusted care for every stage of life</span>
+            <h1>Modern healthcare with a human touch.</h1>
+            <p>
+              Compassionate doctors, advanced diagnostics, and personalized treatment plans designed to help you feel better and live healthier.
+            </p>
+
+            <div class="hero-actions">
+              <a href="/signup" class="btn btn-primary">Schedule Appointment</a>
+              <a href="/doctors" class="btn btn-light">Explore Doctors</a>
+            </div>
+
+            <div class="hero-stats">
+              <div class="stat-box">
+                <strong>25k+</strong>
+                <span>Patients cared for</span>
+              </div>
+              <div class="stat-box">
+                <strong>35+</strong>
+                <span>Specialists</span>
+              </div>
+              <div class="stat-box">
+                <strong>4.9/5</strong>
+                <span>Average rating</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="float-card top">
+              <div class="badge">24/7 Emergency</div>
+              <strong>Same-day care available</strong>
+            </div>
+
+            <div class="doctor-card-preview">
+              <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895977?auto=format&fit=crop&w=900&q=80" alt="Doctor" />
+            </div>
+
+            <div class="float-card bottom">
+              <div class="mini-row">
+                <div class="mini-box">✓</div>
+                <div>
+                  <strong>98%</strong><br />
+                  <small>Patient satisfaction</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🩺</div>
+              <h3>Primary Care</h3>
+              <p>Preventive screenings, checkups, and health planning for long-term wellness.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🧪</div>
+              <h3>Diagnostics</h3>
+              <p>Modern lab testing and imaging support for accurate, timely diagnosis.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">💊</div>
+              <h3>Specialist Care</h3>
+              <p>Personalized treatment pathways in cardiology, orthopedics, pediatrics, and more.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container about-grid">
+          <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80" alt="Medical team" />
+          </div>
+          <div>
+            <span class="eyebrow">About CareNova</span>
+            <h2>Healthcare designed around your life.</h2>
+            <p>
+              CareNova brings together board-certified physicians, nurses, and specialists to provide compassionate care in a supportive setting.
+            </p>
+            <p>
+              Our approach combines technology, clinical excellence, and personalized attention so every patient can feel informed and confident.
+            </p>
+            <ul class="check-list">
+              <li>Board-certified specialists</li>
+              <li>Same-day urgent consultation options</li>
+              <li>Modern digital records and patient support</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="container">
+          <div class="section-header">
+            <span class="eyebrow">Our services</span>
+            <h2>Complete care for every patient.</h2>
+          </div>
+
+          <div class="service-grid">
+            <div class="service-card">
+              <div class="icon">❤️</div>
+              <h3>Cardiology</h3>
+              <p>Heart health evaluations, monitoring, and long-term treatment planning.</p>
+            </div>
+            <div class="service-card">
+              <div class="icon">👶</div>
+              <h3>Pediatrics</h3>
+              <p>Child-focused medical support from wellness visits to specialist care.</p>
+            </div>
+            <div class="service-card">
+              <div class="icon">🦴</div>
+              <h3>Orthopedics</h3>
+              <p>Joint, bone, and mobility care for recovery, comfort, and strength.</p>
+            </div>
+            <div class="service-card">
+              <div class="icon">🧠</div>
+              <h3>Mental Wellness</h3>
+              <p>Support for stress, emotional wellbeing, and behavioral health concerns.</p>
+            </div>
+            <div class="service-card">
+              <div class="icon">🩺</div>
+              <h3>General Medicine</h3>
+              <p>Routine assessment, diagnosis, treatment, and preventive care guidance.</p>
+            </div>
+            <div class="service-card">
+              <div class="icon">🔬</div>
+              <h3>Diagnostics</h3>
+              <p>Lab testing, imaging, and expert review for timely clinical decisions.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="eyebrow">Our doctors</span>
+            <h2>Meet some of our specialists.</h2>
+          </div>
+
+          <div class="doctor-grid">
+            <% doctors.forEach((doctor) => { %>
+              <div class="doctor-card">
+                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=700&q=80" alt="<%= doctor.name %>" />
+                <div class="meta"><%= doctor.specialty || 'Medical Specialist' %></div>
+                <h3><%= doctor.name %></h3>
+                <p><%= doctor.city || 'Location available' %></p>
+                <a href="/doctors/<%= doctor.id %>" class="btn btn-secondary">View Profile</a>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="eyebrow">Patient stories</span>
+            <h2>Real experiences, real results.</h2>
+          </div>
+
+          <div class="testimonial-grid">
+            <div class="testimonial-card">
+              <p>“The team made me feel heard from the very first visit. My treatment plan was clear and reassuring.”</p>
+              <div class="person">
+                <strong>Sarah P.</strong>
+                <span>Patient</span>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p>“Booking online was simple and the doctor reached out quickly. Very professional and responsive.”</p>
+              <div class="person">
+                <strong>Michael R.</strong>
+                <span>Patient</span>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p>“The pediatric team was kind and efficient. My child felt comfortable from our first appointment.”</p>
+              <div class="person">
+                <strong>Priya T.</strong>
+                <span>Parent</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <a href="/" class="brand" style="color:white;">
+            <span class="brand-mark">✚</span>
+            <span>CareNova</span>
+          </a>
+          <p style="margin-top: 1rem; color: rgba(255,255,255,0.8);">Health, compassion, and care you can count on.</p>
+        </div>
+
+        <div>
+          <h3>Contact</h3>
+          <ul>
+            <li>145 Health Avenue, Suite 300</li>
+            <li>hello@carenova.com</li>
+            <li>(555) 123-4567</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Hours</h3>
+          <ul>
+            <li>Mon-Fri: 8:00 AM - 7:00 PM</li>
+            <li>Saturday: 9:00 AM - 3:00 PM</li>
+            <li>Sunday: Emergency Only</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">© 2025 CareNova Medical. All rights reserved.</div>
+    </footer>
+  </body>
+</html>

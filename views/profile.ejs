@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor profile | CareNova</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container navbar">
+        <a href="/" class="brand">
+          <span class="brand-mark">✚</span>
+          <span>CareNova</span>
+        </a>
+        <nav class="nav-links">
+          <a href="/">Home</a>
+          <a href="/dashboard">Dashboard</a>
+          <a href="/logout">Logout</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="auth-shell">
+      <div class="auth-box">
+        <span class="eyebrow">Doctor profile</span>
+        <h1>Update your profile</h1>
+
+        <% if (successMessage) { %>
+          <div class="success-note"><%= successMessage %></div>
+        <% } %>
+
+        <% if (error) { %>
+          <div class="input-error"><%= error %></div>
+        <% } %>
+
+        <form method="POST" action="/profile">
+          <div class="form-grid-2">
+            <label>
+              Full name
+              <input type="text" name="name" value="<%= doctor.name %>" required />
+            </label>
+
+            <label>
+              Phone
+              <input type="text" name="phone" value="<%= doctor.phone || '' %>" />
+            </label>
+
+            <label>
+              City
+              <input type="text" name="city" value="<%= doctor.city || '' %>" />
+            </label>
+
+            <label>
+              Specialty
+              <input type="text" name="specialty" value="<%= doctor.specialty || '' %>" />
+            </label>
+
+            <label>
+              Experience (years)
+              <input type="number" name="experience" min="0" value="<%= doctor.experience || 0 %>" />
+            </label>
+
+            <label>
+              Consultation fee ($)
+              <input type="number" name="fee" min="0" step="0.01" value="<%= doctor.fee || 0 %>" />
+            </label>
+
+            <label class="full-width">
+              Bio
+              <textarea name="bio" placeholder="Describe your expertise and care philosophy."><%= doctor.bio || '' %></textarea>
+            </label>
+          </div>
+
+          <div style="margin-top: 1.2rem;">
+            <button class="btn btn-primary" type="submit">Save profile</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

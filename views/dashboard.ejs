@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | CareNova</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container navbar">
+        <a href="/" class="brand">
+          <span class="brand-mark">✚</span>
+          <span>CareNova</span>
+        </a>
+        <nav class="nav-links">
+          <a href="/">Home</a>
+          <% if (isDoctor) { %>
+            <a href="/profile">Edit Profile</a>
+          <% } %>
+          <a href="/logout">Logout</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container">
+        <span class="eyebrow"><%= isDoctor ? 'Doctor dashboard' : 'Patient dashboard' %></span>
+        <h1 style="margin: 0.8rem 0 1.5rem; color:#132536;">Welcome, <%= user.name %></h1>
+
+        <% if (successMessage) { %>
+          <div class="success-note"><%= successMessage %></div>
+        <% } %>
+
+        <div class="dashboard-grid">
+          <div class="panel">
+            <% if (isDoctor) { %>
+              <h3>Upcoming patient requests</h3>
+              <% if (appointments && appointments.length) { %>
+                <div class="table-wrap">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Patient</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% appointments.forEach((item) => { %>
+                        <tr>
+                          <td><%= item.patient_name %><br><small><%= item.patient_email %></small></td>
+                          <td><%= item.appointment_date %></td>
+                          <td><%= item.appointment_time %></td>
+                          <td><span class="status-pill"><%= item.status || 'pending' %></span></td>
+                          <td>
+                            <form method="POST" action="/appointments/<%= item.id %>/status" style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                              <select name="status">
+                                <option value="pending" <%= item.status === 'pending' ? 'selected' : '' %>>Pending</option>
+                                <option value="confirmed" <%= item.status === 'confirmed' ? 'selected' : '' %>>Confirmed</option>
+                                <option value="completed" <%= item.status === 'completed' ? 'selected' : '' %>>Completed</option>
+                              </select>
+                              <button class="btn btn-secondary" type="submit">Update</button>
+                            </form>
+                          </td>
+                        </tr>
+                      <% }) %>
+                    </tbody>
+                  </table>
+                </div>
+              <% } else { %>
+                <p>No appointments have been booked yet.</p>
+              <% } %>
+            <% } else { %>
+              <h3>Your appointments</h3>
+              <% if (appointments && appointments.length) { %>
+                <div class="table-wrap">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Doctor</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Receipt</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% appointments.forEach((item) => { %>
+                        <tr>
+                          <td><%= item.doctor_name %><br><small><%= item.doctor_specialty %></small></td>
+                          <td><%= item.appointment_date %></td>
+                          <td><%= item.appointment_time %></td>
+                          <td><span class="status-pill"><%= item.status || 'pending' %></span></td>
+                          <td><a href="/appointments/<%= item.id %>/receipt" class="btn btn-secondary">Download</a></td>
+                        </tr>
+                      <% }) %>
+                    </tbody>
+                  </table>
+                </div>
+              <% } else { %>
+                <p>You have not booked any appointments yet.</p>
+                <a class="btn btn-primary" href="/doctors">Find a doctor</a>
+              <% } %>
+            <% } %>
+          </div>
+
+          <div class="panel">
+            <h3>Profile</h3>
+            <p><strong>Name:</strong> <%= user.name %></p>
+            <p><strong>Email:</strong> <%= user.email %></p>
+            <p><strong>Phone:</strong> <%= user.phone || 'Not provided' %></p>
+            <p><strong>City:</strong> <%= user.city || 'Not provided' %></p>
+            <% if (isDoctor) { %>
+              <p><strong>Specialty:</strong> <%= user.specialty || 'Not provided' %></p>
+              <p><strong>Experience:</strong> <%= user.experience || 0 %> years</p>
+              <p><strong>Consultation fee:</strong> $<%= Number(user.fee || 0).toFixed(2) %></p>
+              <a href="/profile" class="btn btn-primary">Edit doctor profile</a>
+            <% } else { %>
+              <a href="/doctors" class="btn btn-primary">Book another appointment</a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
